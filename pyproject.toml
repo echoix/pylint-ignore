@@ -1,0 +1,66 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pylint-ignore"
+dynamic = ["version"]
+description = "Start with silence, not with noise. But do start!"
+readme = "README.md"
+license-files = ["LICENSE"]
+requires-python = ">=3.7"
+authors = [{ name = "Manuel Barkhau", email = "mbarkhau@gmail.com" }]
+keywords = ["flake8", "ignore", "linter", "noise", "pep8", "pylint"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Environment :: Other Environment",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX",
+    "Operating System :: Unix",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = ["astroid>2.1.0", "pylev", "pylint<2.13"]
+
+[project.scripts]
+pylint-ignore = "pylint_ignore.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/mbarkhau/pylint-ignore"
+
+[tool.hatch.version]
+path = "src/pylint_ignore/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = ["/src"]
+
+
+[tool]
+[tool.mypy]
+check_untyped_defs = true
+disallow_untyped_calls = true
+follow_imports = "silent"
+strict_optional = true
+error_summary = false
+ignore_missing_imports = true
+show_error_codes = true
+warn_unreachable = true
+warn_return_any = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+
+[tool.isort]
+known_third_party = "pylint,click"
+force_single_line = true
+length_sort = true
+
+[tool.pytest.ini_options]
+addopts = ["--doctest-modules"]
