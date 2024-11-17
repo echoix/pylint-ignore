@@ -30,6 +30,9 @@ classifiers = [
 ]
 dependencies = ["astroid>2.1.0", "pylev", "pylint<2.13"]
 
+[tool.hatch.envs.default]
+installer = "uv"
+
 [project.scripts]
 pylint-ignore = "pylint_ignore.__main__:main"
 
