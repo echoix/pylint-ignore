@@ -55,7 +55,7 @@ setuptools.setup(
     author="Manuel Barkhau",
     author_email="mbarkhau@gmail.com",
     url="https://github.com/mbarkhau/pylint-ignore",
-    version="2022.1025",
+    version="2024.1117.1",
     keywords="pylint ignore noise flake8 pep8 linter",
     description="Start with silence, not with noise. But do start!",
     long_description=long_description,
@@ -64,7 +64,7 @@ setuptools.setup(
     packages=setuptools.find_packages("src/"),
     package_dir={"": "src"},
     install_requires=install_requires,
-    python_requires=">=3.7",
+    python_requires=">=3.10",
     zip_safe=True,
     classifiers=classifiers,
 

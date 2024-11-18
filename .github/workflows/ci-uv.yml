@@ -1,0 +1,52 @@
+name: uv ci tests
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  uv-example:
+    name: python
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        python-version:
+          - "3.10"
+          - "3.11"
+          - "3.12"
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}-${{ matrix.python-version }}-${{ matrix.os }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install
+
+      - name: Install the project
+        run: uv sync --all-extras --dev
+
+      - name: Run tests
+        run: |
+          uv run pytest \
+            --doctest-modules \
+            --verbose \
+            --cov-report "html:reports/testcov/" \
+            --cov-report term \
+            --html=reports/pytest/index.html \
+            --junitxml reports/pytest.xml \
+            test/ src/
+
+      - run: uv run pylint-ignore pylint-ignore --rcfile=setup.cfg src/ test/ --update-ignorefile
+      - run: uv run pylint-ignore --rcfile=setup.cfg --ignorefile=fixtures/pylint-ignore.md fixtures/
