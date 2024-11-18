@@ -27,7 +27,7 @@ readme_renderer[md]
 twine
 
 md-toc
-cmarkgfm==0.7
+cmarkgfm==0.8.0
 straitjacket>=v202008.1016
 bumpver
 
