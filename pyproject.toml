@@ -140,5 +140,6 @@ generated-members = "(_replace|_asdict|_fields)"
 
 [dependency-groups]
 dev = [
+    "pytest-cov>=6.0.0",
     "pytest>=8.3.3",
 ]
