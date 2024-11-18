@@ -37,4 +37,5 @@ lxml
 # yes, we depend on a previous version of ourselves
 #   (at least for integration purposes)
 pylint-ignore @ git+https://github.com/echoix/pylint-ignore.git@4ad3911dc98317d94e1312661bbd0c64c893d8b2
-pylint==2.15.1
+# pylint==2.15.1
+pylint>=2.15
