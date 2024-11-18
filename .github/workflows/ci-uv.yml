@@ -38,7 +38,15 @@ jobs:
         run: uv sync --all-extras --dev
 
       - name: Run tests
-        run: uv run pytest test
+        run: |
+          uv run pytest \
+            --doctest-modules \
+            --verbose \
+            --cov-report "html:reports/testcov/" \
+            --cov-report term \
+            --html=reports/pytest/index.html \
+            --junitxml reports/pytest.xml \
+            test/ src/
 
       - run: uv run pylint-ignore pylint-ignore --rcfile=setup.cfg src/ test/ --update-ignorefile
       - run: uv run pylint-ignore --rcfile=setup.cfg --ignorefile=fixtures/pylint-ignore.md fixtures/
