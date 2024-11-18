@@ -359,7 +359,7 @@ elif [[ -z "${IGNORE_IF_EXISTS[*]}" ]]; then
     declare -a IGNORE_IF_EXISTS=(
         "CHANGELOG.md"
         "README.md"
-        "setup.py"
+        "pyproject.toml"
         "requirements/pypi.txt"
         "requirements/conda.txt"
         "requirements/vendor.txt"
@@ -407,7 +407,6 @@ copy_template license.header;
 copy_template stubs/README.md;
 copy_template MANIFEST.in;
 
-copy_template setup.py;
 copy_template setup.cfg;
 
 copy_template Makefile;

@@ -205,7 +205,7 @@ projects by reducing the burden of project setup to a minimum.
     docs/              # documentation source files
     data/              # fixtures for unit tests and db initialization
 
-    setup.py           # main python package metadata
+    pyproject.toml     # main python package configuration file
     setup.cfg          # misc python tooling configuration
 
     README.md          # project overview and status
@@ -361,7 +361,7 @@ The typical commands used during development are:
 Slightly less common but good to run before doing `git push`.
 
 - `make test`: Run unittests on all supported interpreters after installing
-  using `python setup.py install`. This tests the code as the users of your
+  using `python -m pip install .`. This tests the code as the users of your
   library will have installed.
 - `make citest`: Run `make test` but inside a docker container, which is as
   close to the ci environment as possible. This is quite useful if you don't

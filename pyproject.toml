@@ -1,0 +1,134 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pylint-ignore"
+dynamic = ["version"]
+description = "Start with silence, not with noise. But do start!"
+readme = "README.md"
+license-files = ["LICENSE"]
+requires-python = ">=3.7"
+authors = [{ name = "Manuel Barkhau", email = "mbarkhau@gmail.com" }]
+keywords = ["flake8", "ignore", "linter", "noise", "pep8", "pylint"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Environment :: Other Environment",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX",
+    "Operating System :: Unix",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = ["astroid>2.1.0", "pylev", "pylint<2.13"]
+
+[tool.hatch.envs.default]
+installer = "uv"
+
+[project.scripts]
+pylint-ignore = "pylint_ignore.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/mbarkhau/pylint-ignore"
+
+[tool.hatch.version]
+path = "src/pylint_ignore/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = ["/src"]
+
+
+[tool]
+[tool.mypy]
+check_untyped_defs = true
+disallow_untyped_calls = true
+follow_imports = "silent"
+strict_optional = true
+error_summary = false
+ignore_missing_imports = true
+show_error_codes = true
+warn_unreachable = true
+warn_return_any = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+
+[tool.isort]
+known_third_party = "pylint,click"
+force_single_line = true
+length_sort = true
+
+[tool.pytest.ini_options]
+addopts = ["--doctest-modules"]
+
+
+[tool.pylint]
+score = "no"
+reports = "no"
+
+# pylint may spam the same message multiple times if jobs > 1
+jobs = 2
+
+# Set the output format. Available formats are text, parseable, colorized,
+# msvs (visual studio) and html. You can also give a reporter class, eg
+# mypackage.mymodule.MyReporterClass.
+output-format = "colorized"
+
+# Maximum number of locals for function / method body
+max-locals = 20
+
+# Maximum number of arguments for function / method
+max-args = 8
+
+good-names = ["logger", "i", "ex"]
+
+# These are packages that are implemented as c extensions and
+# which pylint cannot do introspection on.
+extension-pkg-whitelist = [
+    "numpy",
+    "pandas",
+    "lxml",
+    "PIL",
+    "sklearn",
+    "pyblake2",
+]
+
+notes = ["TODO", "FIXME", "XXX", "SLOW", "BUG"]
+
+# similarities/duplicaition checker
+min-similarity-lines = 4
+ignore-comments = true
+ignore-docstrings = true
+ignore-imports = true
+
+ignored-argument-names = "args|kwargs"
+
+# https://pylint.pycqa.org/en/stable/technical_reference/features.html
+disable = [
+    "bad-continuation",
+    "bad-whitespace",
+    "consider-using-f-string",
+    "duplicate-code",
+    "line-too-long",
+    "logging-format-interpolation",
+    "logging-fstring-interpolation",
+    "logging-not-lazy",
+    "missing-class-docstring",
+    "missing-docstring",
+    "missing-function-docstring",
+    "missing-module-docstring",
+    "no-else-raise",
+    "no-else-return",
+    "too-few-public-methods",
+    "ungrouped-imports",
+]
+
+# members of typing.NamedTuple
+generated-members = "(_replace|_asdict|_fields)"

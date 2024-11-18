@@ -27,9 +27,9 @@ jobs:
           path: |
             ~/miniconda3
             build/*.txt
-          key: ${{ runner.OS }}-conda-cache-${{ hashFiles('requirements/*.txt', 'setup.py', 'Makefile*') }}
+          key: ${{ runner.OS }}-conda-cache-${{ hashFiles('requirements/*.txt', 'setup.py', 'Makefile*', 'pyproject.toml') }}
           restore-keys: |
-            ${{ runner.OS }}-conda-cache-${{ hashFiles('requirements/*.txt', 'setup.py', 'Makefile*') }}
+            ${{ runner.OS }}-conda-cache-${{ hashFiles('requirements/*.txt', 'setup.py', 'Makefile*', 'pyproject.toml') }}
 
       - name: make conda
         run:
