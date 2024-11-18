@@ -8,7 +8,7 @@ dynamic = ["version"]
 description = "Start with silence, not with noise. But do start!"
 readme = "README.md"
 license-files = ["LICENSE"]
-requires-python = ">=3.7"
+requires-python = ">=3.10"
 authors = [{ name = "Manuel Barkhau", email = "mbarkhau@gmail.com" }]
 keywords = ["flake8", "ignore", "linter", "noise", "pep8", "pylint"]
 classifiers = [
@@ -28,7 +28,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-dependencies = ["pylev", "pylint<3"]
+dependencies = ["pylev", "pylint>=2.15,<3"]
 
 [tool.hatch.envs.default]
 installer = "uv"
@@ -45,6 +45,11 @@ path = "src/pylint_ignore/__init__.py"
 [tool.hatch.build.targets.sdist]
 include = ["/src"]
 
+[tool.hatch.envs.hatch-test]
+default-args = ["test"]
+
+[[tool.hatch.envs.hatch-test.matrix]]
+python = ["3.13", "3.12", "3.11", "3.10"]
 
 [tool]
 [tool.mypy]
