@@ -7,6 +7,6 @@
 # Binary (non-pure) packages may also be listed here, but you
 # should see if there is a conda package that suits your needs.
 
-astroid>2.1.0
-pylint<2.13
+# astroid>2.1.0
+pylint>=2.15,<3
 pylev
