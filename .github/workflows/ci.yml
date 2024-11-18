@@ -50,14 +50,13 @@ jobs:
         run: |
           rm -rf build/
           make dist_build
-          mv dist/*.whl dist/pylint_ignore-ci-py2.py3-none-any.whl
 
       - name: upload dist
         if: ${{ matrix.os }} == 'ubuntu-latest'
         uses: actions/upload-artifact@v4
         with:
-          name: pylint_ignore-ci-py2.py3-none-any.whl
-          path: dist/pylint_ignore-ci-py2.py3-none-any.whl
+          name: pylint_ignore-ci-${{ matrix.os }}-wheel
+          path: dist/pylint_ignore*.whl
 
   build-windows:
     needs: build
@@ -67,15 +66,17 @@ jobs:
 
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+          python-version: '3.8' # Version range or exact version of a Python version to use, using SemVer's version range syntax
           architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
 
       - uses: actions/download-artifact@v4
         with:
-          name: pylint_ignore-ci-py2.py3-none-any.whl
+          merge-multiple: true
+          name: pylint_ignore-ci-ubuntu-latest-wheel
+          path: dist/
 
       - name: install
-        run: python3 -m pip install pylint_ignore-ci-py2.py3-none-any.whl
+        run: python3 -m pip install pylint_ignore --find-links=./dist/
 
       - name: info
         run: |
