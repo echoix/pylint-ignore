@@ -177,7 +177,7 @@ repos:
         #   "src/",
         #   "test/",
         #   "--ignore-paths",
-        #   "scripts/,fixtures/,setup.py",
+        #   "scripts/,fixtures/",
         # ]
 ```
 

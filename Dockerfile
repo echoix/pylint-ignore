@@ -6,7 +6,7 @@ ADD test/ test/
 ADD fixtures/ fixtures/
 ADD requirements/ requirements/
 ADD setup.cfg setup.cfg
-ADD setup.py setup.py
+ADD pyproject.toml pyproject.toml
 ADD pylint-ignore.md pylint-ignore.md
 ADD README.md README.md
 ADD CHANGELOG.md CHANGELOG.md
