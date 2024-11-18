@@ -399,8 +399,7 @@ test:
 	rm -rf "build/test_wheel";
 	rm -rf "build/lib/";
 	mkdir -p build/test_wheel;
-	$(DEV_ENV_PY) setup.py bdist_wheel --python-tag=py2.py3 \
-		--dist-dir build/test_wheel;
+	$(DEV_ENV_PY) -m build --outdir build/test_wheel;
 
 	IFS=' ' read -r -a env_py_paths <<< "$(CONDA_ENV_BIN_PYTHON_PATHS)"; \
 	for i in $${!env_py_paths[@]}; do \
