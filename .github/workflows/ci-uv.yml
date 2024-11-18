@@ -41,4 +41,4 @@ jobs:
         run: uv run pytest test
 
       - run: uv run pylint-ignore pylint-ignore --rcfile=setup.cfg src/ test/ --update-ignorefile
-      - run: uv run pylint-ignore --rcfile=setup.cfg --ignorefile=fixtures\pylint-ignore.md fixtures\
+      - run: uv run pylint-ignore --rcfile=setup.cfg --ignorefile=fixtures/pylint-ignore.md fixtures/
