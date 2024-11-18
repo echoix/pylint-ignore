@@ -28,7 +28,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-dependencies = ["astroid>2.1.0", "pylev", "pylint<2.13"]
+dependencies = ["astroid>2.1.0", "pylev", "pylint<3"]
 
 [tool.hatch.envs.default]
 installer = "uv"
