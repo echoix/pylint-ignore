@@ -3,19 +3,24 @@ name: uv ci tests
 on:
   pull_request:
   push:
-    branches: [ master ]
+    branches: [master]
   workflow_dispatch:
 
 jobs:
   uv-example:
     name: python
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         python-version:
           - "3.10"
           - "3.11"
           - "3.12"
+        os:
+          - ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}-${{ matrix.python-version }}-${{ matrix.os }}
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
 
