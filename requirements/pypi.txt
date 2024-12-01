@@ -8,5 +8,5 @@
 # should see if there is a conda package that suits your needs.
 
 astroid>2.1.0
-pylint<2.13
+pylint<3.4
 pylev
